@@ -1,0 +1,300 @@
+// Header section design
+.App-header {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    .flex-box {
+        align-items: baseline;
+        .header-logo {
+            max-width: 300px;
+            img {
+                width: 100%;
+                cursor: pointer;
+            }
+        }
+        .serach-box {
+            display: flex;
+            justify-content: flex-end;
+            input[type="search"] {
+                max-width: 250px;
+                width: 100%;
+                margin-right: 10px;
+            }
+        }
+    }
+}
+
+// Navbar section design
+.App-nav {
+    background-color: #0d6eff;
+    .navbar {
+        a {
+            padding: 0 15px;
+            color: white;
+        }
+    }
+}
+
+// Main Section design
+.main-section {
+    padding: 20px 0;
+}
+.App-category {
+    .nav {
+        display: flex;
+        align-content: flex-start;
+        flex-direction: column;
+        margin-top: 10px;
+        li {
+            a {
+                color: #5b5b5b;
+                padding: 2px 5px;
+                font-size: 14px;
+                font-weight: 500;
+                text-align: left;
+            }
+        }
+    }
+}
+
+.userForm {
+    margin-top: 20px;
+    .alert-msg {
+        color: red;
+        font-size: 12px;
+    }
+}
+
+.product-listing-block {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    .product-icon {
+        display: flex;
+        .icon {
+            margin: 0 5px;
+            cursor: pointer;
+            // &.active:{
+            //     color: #0d6efe;
+            // }
+        }
+    }
+}
+.list-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid grey;
+    .product-image {
+        width: 25%;
+        max-width: 125px;
+        min-width: 125px;
+        max-height: 125px;
+        border: 1px solid grey;
+        img {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    .product-info {
+        width: 70%;
+        padding-left: 15px;
+        h4 {
+            color: #565656;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .price-data {
+            margin: 5px 0;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    }
+}
+
+// Shopping Cart design
+.list-group {
+    margin-top: 10px;
+    border: none;
+    border-radius: 0;
+    --bs-list-group-border-color: white;
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid grey;
+        padding: 12px 0;
+        .image-wrapper {
+            display: flex;
+            height: 50px;
+            width: 50px;
+            border: 1px solid grey;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        h5 {
+            color: #565656;
+            font-size: 12px;
+        }
+        button {
+            display: flex;
+            border: none;
+            background-color: transparent;
+        }
+        .App-IncreDecre {
+            display: flex;
+            align-items: center;
+            p {
+                width: 50px;
+                margin: 0 5px;
+                padding: 2px 5px;
+                border: 1px solid grey;
+                text-align: center;
+                height: 26px;
+                line-height: inherit;
+            }
+        }
+    }
+}
+
+.App-cart {
+    .cart-item {
+        margin: 5px 0;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .cart-link {
+        color: #0d6efe;
+        font-size: 12px;
+        font-weight: bold;
+        a {
+            position: relative;
+            padding-right: 5px;
+            text-decoration: none;
+            &:nth-child(2) {
+                padding-left: 5px;
+                &:after {
+                    position: absolute;
+                    top: 3px;
+                    left: 0;
+                    width: 1px;
+                    height: 10px;
+                    background-color: #0d6efe;
+                    content: '';
+                }
+            }
+        }
+    }
+}
+// Modal design
+.modal-dialog {
+    .modal-header {
+        .modal-title {
+            color: black;
+        }
+        .btn-close {
+            &:focus {
+                box-shadow: none;
+            }
+        }
+    }
+    .modal-body { 
+        .image-wrapper {
+            max-width: 180px;
+            min-height: 180px;
+            height: 100%;
+            border: 1px solid grey;
+            img {
+                height: 100%;
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+        .details-description {
+            .form-label,
+            span {
+                width: 100%;
+                margin-bottom: 5px;
+                color: #6c757d;
+                font-size: 12px;
+                font-weight: bold;
+            }
+            .form-select,
+            .qtyInput {
+                max-width: 100px;
+                font-size: 14px;
+                &:focus,
+                &:hover {
+                    box-shadow: none;
+                }
+            }
+            .price-text {
+                line-height: 15px;
+                .form-label {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+    .modal-footer {
+        .btn {
+            font-size: 14px;
+        }
+    }
+}
+
+
+// Button design
+.btn {
+    color: #0d6efe;
+
+    &.btn-lg {
+        padding: 0 20px;
+        font-size: 14px;
+    }
+    &.btn-sm {
+        padding: 5px 20px;
+        font-size: 12px;
+    }
+}
+// Heading design
+.App {
+    h2,
+    h3,
+    h4 {
+        margin-bottom: 0;
+        color: #0d6efe;
+        text-align: left;
+    }
+    h2 {
+        font-size: 30px;
+    }
+    h3 {
+        font-size: 24px;
+    }
+}
+form {
+    .form-control,
+    .form-select {
+        font-size: 14px;
+        &:focus,
+        &:hover {
+        box-shadow: none;
+        }
+    }
+}
+
+p {
+    margin-bottom: 0 !important;
+    color: #565656;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 15px;
+}
