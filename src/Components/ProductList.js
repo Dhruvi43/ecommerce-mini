@@ -2,10 +2,9 @@ import React, { useState, useCallback } from "react";
 import List from "./List";
 
 import Container from "react-bootstrap/Container";
-import data from "./Data";
 import "../../src/main.scss";
 
-export default function ProductList() {
+export default function ProductList(props) {
   // This state can be stored also for example in Redux
   const [currentView, setCurrentView] = useState("list");
 
@@ -17,7 +16,7 @@ export default function ProductList() {
     <Container>
         <div className="App-ProductList">
       <List
-        items={data}
+        items={props.product}
         currentView={currentView}
         onToggleCurrentView={handleToggleCurrentView}
       />

@@ -1,4 +1,3 @@
-import Cart from "./Cart";
 import ListGroup from 'react-bootstrap/ListGroup';
 import IncreDecre from "./IncreDecre";
 import { FaTimes } from "react-icons/fa";

@@ -4,6 +4,7 @@ import { Col, Row } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 
 export default function DetailsModalPopup(props) {
+    const {data} = props
     return (
         <Modal
             {...props}
@@ -13,7 +14,7 @@ export default function DetailsModalPopup(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Product Name
+                    {data?.title}
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
@@ -21,7 +22,7 @@ export default function DetailsModalPopup(props) {
                     <Row>
                         <Col md={5}>
                             <div className='image-wrapper'>
-                                <img src='"https://media.geeksforgeeks.org/wp-content/uploads/geeksforgeeks-13.png"' alt="" />
+                                <img src={data?.img} alt="" />
                             </div>
                         </Col>
                         <Col md={7}>
@@ -36,11 +37,11 @@ export default function DetailsModalPopup(props) {
                                 </Form.Group>
                                 <Form.Group className="mb-2">
                                     <Form.Label>Qty</Form.Label>
-                                    <Form.Control className='qtyInput' placeholder="input" />
+                                    <Form.Control className='qtyInput' value={1} placeholder="input" />
                                 </Form.Group>
                                 <Form.Group className="mb-2 price-text">
                                     <Form.Label>Price</Form.Label>
-                                    <span>$99.00</span>
+                                    <span>${data?.price}</span>
                                 </Form.Group>
                             </div>
                         </Col>
@@ -50,7 +51,7 @@ export default function DetailsModalPopup(props) {
                     <Row>
                         <Col>
                             <div className='product-description mt-3'>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <p>{data?.description}</p>
                             </div></Col>
                     </Row>
 

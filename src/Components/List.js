@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from 'react-bootstrap/Button';
 import DetailsModalPopup from './DetailsModalPopup';
@@ -6,8 +6,8 @@ import { FaThList } from "react-icons/fa";
 import { FaTh } from "react-icons/fa";
 
 export default function List({ items, currentView, onToggleCurrentView }) {
-  const isDetailedView = currentView === "grid";
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShow, setModalShow] = useState(false);
+  const [editData,setEditData] = useState()
   return (
     <div>
       <div className="product-listing-block">
@@ -36,15 +36,19 @@ export default function List({ items, currentView, onToggleCurrentView }) {
               <h4>{item.title}</h4>
               <p className="list-item-description">{item.description}</p>
               <div className="price-data">
-                  Price - $ <span>99.00</span>
+                  Price - $ <span>{parseFloat(item.price).toFixed(2)}</span>
               </div>
-              <Button className="btn-sm" variant="primary" onClick={() => setModalShow(true)}>
+              <Button className="btn-sm" variant="primary" onClick={() => {
+                setEditData(item)
+                setModalShow(true)
+                }}>
                   View Details
               </Button>
             </div>
             <DetailsModalPopup
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                data = {editData}
             />
           </div>
         ))}
