@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { Form, Button } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
-import {product} from "../constants"
 export default function ShopByCategory(props) {
     const [title,setTitle]=useState('');
     const [img,setImg]=useState('');

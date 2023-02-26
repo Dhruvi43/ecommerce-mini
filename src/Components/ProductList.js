@@ -19,6 +19,7 @@ export default function ProductList(props) {
         items={props.product}
         currentView={currentView}
         onToggleCurrentView={handleToggleCurrentView}
+        addToCartFunc = {props.addToCartFunc}
       />
       </div >
     </Container>

@@ -4,8 +4,15 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import logo from '../Assets/logo.png'
+import { useState } from 'react';
 
 export default function Header() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const [search,setSearch]=useState(urlParams.get('search'))
+    const handleSearch = () =>{
+        urlParams.set('search', search); 
+        window.location.search = urlParams;
+    }
     return (
         <div className="App-header">
             <Container>
@@ -18,8 +25,8 @@ export default function Header() {
                     <Col md={6}>
                         <Form>
                             <Form.Group className='serach-box'>
-                                <Form.Control type="search" placeholder="Search" />
-                                <Button className='btn btn-lg' variant="primary" type="submit">
+                                <Form.Control type="search" value={search} placeholder="Search" onChange={(e) => setSearch(e.target.value)}/>
+                                <Button className='btn btn-lg' variant="primary" onClick={handleSearch}>
                                     Search
                                 </Button>
                             </Form.Group>

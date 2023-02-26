@@ -1,12 +1,16 @@
+import { useEffect } from 'react';
 import { Col, Row } from 'react-bootstrap';
 
-export default function Cart() {
+const Cart =({addToCart})=> {
+    let total = addToCart?.reduce((sum, currentItem) => { 
+        return sum + (parseFloat(currentItem.quantity) * parseFloat(currentItem.price)); 
+    }, 0);
     return (
         <div className="App-cart">
             <h3>Your Cart</h3>
             <Row>
                 <Col><div className="cart-item">
-                    <span>1</span>Item - $<span>999.00</span></div></Col>
+                    <span>{addToCart?.length}</span> Item - $<span>{parseFloat(total).toFixed(2)}</span></div></Col>
             </Row>
             <Row>
                 <Col><div className="cart-link">
@@ -15,3 +19,6 @@ export default function Cart() {
         </div>
     );
 }
+
+
+export default Cart;

@@ -5,7 +5,7 @@ import DetailsModalPopup from './DetailsModalPopup';
 import { FaThList } from "react-icons/fa";
 import { FaTh } from "react-icons/fa";
 
-export default function List({ items, currentView, onToggleCurrentView }) {
+export default function List({ items, currentView, onToggleCurrentView ,addToCartFunc}) {
   const [modalShow, setModalShow] = useState(false);
   const [editData,setEditData] = useState()
   return (
@@ -23,7 +23,7 @@ export default function List({ items, currentView, onToggleCurrentView }) {
       </div>
 
       <div className={currentView === "list" ? "list" : "list-grid"}>
-        {items.map(item => (
+        {items?.length > 0 ? items.map(item => (
           <div className="list-item" key={item.title}>
             <div className="product-image">
               <img
@@ -49,9 +49,10 @@ export default function List({ items, currentView, onToggleCurrentView }) {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 data = {editData}
+                addToCartFunc = {addToCartFunc}
             />
           </div>
-        ))}
+        )) : <h5>No Data Found</h5>}
       </div>
     </div>
   );

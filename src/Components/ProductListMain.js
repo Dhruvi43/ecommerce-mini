@@ -8,6 +8,8 @@ import Cart from './Cart';
 
 const App = () => {
   const [singleProduct,setSingleProduct] = useState(null)
+  const [addToCart,setAddToCart] = useState([])
+  const [addToCartSingle,setAddToCartSingle] = useState(null);
     const [product,setProduct] = useState([
         {
             id : 1,
@@ -39,6 +41,7 @@ const App = () => {
         }
     ])
     const [filterProduct,setFilterProduct] = useState([])
+
     const handleSubmit = (title,img,description,price) =>{
       if(title && img && description && price){
         setSingleProduct({title,img,description,price})
@@ -50,6 +53,32 @@ const App = () => {
         setProduct(prevProduct => ([...prevProduct, singleProduct]));
       }
     },[singleProduct])
+    useEffect(()=>{
+      if(addToCartSingle){
+        setAddToCart(prevProduct => ([...prevProduct, addToCartSingle]));
+      }
+    },[addToCartSingle])
+    useEffect(()=>{
+      localStorage.removeItem('cart')
+      localStorage.setItem('cart',JSON.stringify(addToCart))
+    },[addToCart])
+    useEffect(()=>{
+      const urlParams = new URLSearchParams(window.location.search);
+       let params = urlParams.get('search');
+       if(!params){
+        window.history.pushState({}, document.title, window.location.pathname);
+       }
+      getSearchProduct(params)
+    },[window.location.search])
+    const getSearchProduct =(val) =>{
+     if(val === "" || !val ){
+      setFilterProduct([])
+     } else{
+      let prod = product;
+      let arr = prod.filter(e => e.title.toLowerCase().search(val.toLowerCase()) > -1 || e.description.toLowerCase().search(val.toLowerCase()) > -1)
+      setFilterProduct(arr);
+     } 
+    } 
     const getShoByCategory = val =>{
       if(val !== "clear"){
         let prod = product;
@@ -57,8 +86,10 @@ const App = () => {
       setFilterProduct(arr);
       } else{
         setFilterProduct([])
-      }
-      
+      } 
+    }
+    const addToCartFunc = (e) =>{
+      setAddToCartSingle(e)
     }
   return (
       <div className='main-section'>
@@ -67,11 +98,11 @@ const App = () => {
             <Col md={3}>
               <ShopByCategory handleSubmit = {handleSubmit} getShoByCategory = {getShoByCategory}/>
             </Col>
-            <Col md={6}>{console.log("product",product)}
-              <ProductList product = {filterProduct.length > 0 ? filterProduct.sort((a,b)=>b.id-a.id) :product.sort((a,b)=>b.id-a.id)}/>
+            <Col md={6}>
+              <ProductList addToCartFunc ={addToCartFunc} product = {filterProduct.length === 0 && window.location.search ? [] :filterProduct.length > 0 ? filterProduct.sort((a,b)=>b.id-a.id) :product.sort((a,b)=>b.id-a.id)}/>
             </Col>
             <Col md={3}>
-              <Cart />
+              <Cart addToCart={addToCart}/>
             </Col>
           </Row>
         </Container>

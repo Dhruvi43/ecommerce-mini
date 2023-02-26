@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { FaMinus } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
 
-export default function IncreDecre() {
-    const [count, setCount] = useState(0);
+export default function IncreDecre({changeQuantity,editData}) {
+    const [count, setCount] = useState(editData?.quantity || 0);
     function increment() {
-        //setCount(prevCount => prevCount+=1);
         setCount(function (prevCount) {
+          changeQuantity(editData,prevCount + 1)
           return (prevCount += 1);
         });
       }
@@ -14,8 +14,10 @@ export default function IncreDecre() {
       function decrement() {
         setCount(function (prevCount) {
           if (prevCount > 0) {
+            changeQuantity(editData,prevCount - 1)
             return (prevCount -= 1); 
           } else {
+            changeQuantity(editData,0)
             return (prevCount = 0);
           }
         });
